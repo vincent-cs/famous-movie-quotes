@@ -1,0 +1,67 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: larger;
+}
+
+h1 {
+    color: red;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+#container {
+    border-top: 1px solid darkgray;
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+}
+
+.row {
+    width: 100%;
+    clear: both;
+}
+
+.column1 {
+    float: left;
+    width: 50%;
+}
+
+.column2 {
+    float: left;
+    width: 50%;
+}
+
+.quoteClass {
+    color: red;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 2px 5px;;
+}
+
+.movieClass {
+    color: black;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 2px 5px;
+}
+
+.x {
+    background: yellow;
+}
+
+.y {
+    background: lightgray;
+}
+
+.footer {
+    border-top: 1px solid darkgray;
+    margin-top: 10px;
+}
+.footer p {
+    color: darkgray;
+    padding: 0;
+    margin: 2px;
+}
