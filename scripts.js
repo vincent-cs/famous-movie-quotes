@@ -70,9 +70,6 @@ divContainer.innerHTML = scripts.map((quote, index) => {
 }).join('') + '<div class="row"></div>';
 
 let quote_selected = null;
-let quote_id = null;
-let movie_id = null;
-let row_id = null;
 
 document.addEventListener('click', function (event) {
 
@@ -80,35 +77,44 @@ document.addEventListener('click', function (event) {
         // Log the clicked element in the console
         // console.log(clickedElem);
 
+        // clicked on quote text
         if (clickedElem.classList.contains('quoteClass')) {
-            if (clickedElem.classList.contains('y')) {
-                clickedElem.classList.remove('y');
-                if (quote_selected) {
-                    quote_selected.classList.remove('x');
-                }
-                quote_selected = null;
-                movie_id = 'm' + clickedElem.id.valueOf().toString().substring(1);
-                document.getElementById(movie_id).classList.remove('y');
+            // toggle if class is solved for clicked element
+            if (clickedElem.classList.contains('solved')) {
+                // remove class solved for quote and movie
+                clickedElem.classList.remove('solved');
+                const movie_id = 'm' + clickedElem.id.valueOf().toString().substring(1);
+                document.getElementById(movie_id).classList.remove('solved');
             }
-
-            clickedElem.classList.add('x');
+            // remove class selected from previous quote
             if (quote_selected) {
-                quote_selected.classList.remove('x');
+                quote_selected.classList.remove('selected');
             }
+            // save clicked element in quote_selected and add class selected
             quote_selected = clickedElem;
-            quote_id = quote_selected.id.valueOf().toString();
-            console.log(quote_id);
+            quote_selected.classList.add('selected');
         }
 
+        // clicked on movie text
         if (clickedElem.classList.contains('movieClass')) {
-            if (quote_selected) {
-                movie_id = 'm' + quote_id.substring(1);
-                let temp_id = clickedElem.id.valueOf().toString();
-                let temp_text = document.getElementById(temp_id).innerText;
-                document.getElementById(temp_id).innerText = document.getElementById(movie_id).innerText;
-                document.getElementById(movie_id).innerText = temp_text;
-                document.getElementById(movie_id).classList.add('y');
-                document.getElementById(quote_id).classList.add('y');
+            // don't change movies with class is already solved
+            if (!clickedElem.classList.contains('solved')) {
+                // switch movie text from clicked element to selected quote element
+                // first check if a quote is selected and if it's class is not already solved
+                if (quote_selected && !quote_selected.classList.contains('solved')) {
+                    // saved clicked movie id and text in temp value
+                    const temp_id = clickedElem.id.valueOf().toString();
+                    const temp_text = document.getElementById(temp_id).innerText;
+                    // construct movie_id from quote_id from the quote_selected
+                    const quote_id = quote_selected.id.valueOf().toString();
+                    const movie_id = 'm' + quote_id.substring(1);
+                    // switch the movie text of clicked id with selected quote id
+                    document.getElementById(temp_id).innerText = document.getElementById(movie_id).innerText;
+                    document.getElementById(movie_id).innerText = temp_text;
+                    // mark quote and related movie with class solved
+                    document.getElementById(movie_id).classList.add('solved');
+                    document.getElementById(quote_id).classList.add('solved');
+                }
             }
         }
 
