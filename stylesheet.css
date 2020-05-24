@@ -12,6 +12,61 @@ p {
     text-align: center;
 }
 
+/* Pad in landscape */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+    #container {
+        border-top: 1px solid darkgray;
+        width: 100%;
+        max-width: 960px;
+        margin: auto;
+    }
+
+    .row {
+        width: 100%;
+        clear: both;
+    }
+
+    .column1 {
+        border: none;
+        float: left;
+        width: 50%;
+    }
+
+    .column2 {
+        border: none;
+        float: left;
+        width: 50%;
+    }
+}
+
+/* iPad in portrait */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+    #container {
+        border-top: 1px solid darkgray;
+        width: 100%;
+    }
+
+    .row {
+        width: 100%;
+    }
+
+    .column1 {
+        border-top: 2px solid darkgray;
+        width: 100%;
+    }
+
+    .column2 {
+        border-top: 1px solid lightgray;
+        width: 100%;
+    }
+}
+
 /* Small screens */
 @media only screen and (max-width: 768px) {
     #container {
